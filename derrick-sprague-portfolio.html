@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Derrick M. Sprague — Analyst</title>
+<meta name="description" content="Derrick M. Sprague — Operations & Intelligence Analyst. 12 years of defense experience in engineering, logistics, data, and intelligence across four federal environments." />
+
+<!-- Social link previews. After deploying, set og:url to your live URL and add an og:image
+     (a 1200x630 PNG — e.g. a screenshot of the tracker) for a richer card. -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Derrick M. Sprague — Operations & Intelligence Analyst" />
+<meta property="og:description" content="12 years of defense operations across four federal environments. Open to Intelligence, Targeting, Operations, and Business Analyst roles." />
+<!-- <meta property="og:url" content="https://YOURSITE.netlify.app/" /> -->
+<!-- <meta property="og:image" content="https://YOURSITE.netlify.app/preview.png" /> -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Derrick M. Sprague — Operations & Intelligence Analyst" />
+<meta name="twitter:description" content="12 years of defense operations across four federal environments." />
+<style>
+  /* --------------------------------------------------------------- tokens */
+  :root{
+    --slate:#4d6372;        /* main */
+    --bone:#eee8e2;         /* accent / ground */
+    --slate-d:#3d525f;      /* deeper slate */
+    --slate-x:#2b3a44;      /* darkest, hover */
+    --ink:#24313a;          /* body text */
+    --dim:#556570;          /* muted — darkened for AA contrast on bone */
+    --panel:#f4f0ea;        /* card on bone */
+    --line:rgba(77,99,114,.22);
+    --line-2:rgba(77,99,114,.40);
+    --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    --edge:min(6vw,84px);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bone); color:var(--ink);
+    font-family:var(--sans); font-size:16px; line-height:1.6; letter-spacing:.005em;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--slate); color:var(--bone)}
+  a{color:inherit; text-decoration:none}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--slate); outline-offset:3px}
+
+  .wrap{max-width:1200px; margin:0 auto; padding:0 var(--edge)}
+  .label{font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--slate); font-weight:700}
+  .tnum{font-variant-numeric:tabular-nums; letter-spacing:.01em}
+
+  /* --------------------------------------------------------------- hero */
+  .hero{padding:70px 0 20px}
+  .hero-grid{display:grid; grid-template-columns:1.55fr .95fr; gap:52px; align-items:start}
+  @media(max-width:880px){ .hero-grid{grid-template-columns:1fr; gap:32px} }
+
+  .hero .ey{margin:0 0 18px}
+  .hero h1{
+    font-size:clamp(44px,7.2vw,86px); line-height:.98; letter-spacing:-.025em;
+    font-weight:700; margin:0; color:var(--slate);
+  }
+  .hero h1 .l2{color:var(--ink); display:block}
+  .hero .role{font-size:clamp(16px,2vw,20px); font-weight:600; color:var(--ink); margin:20px 0 0; letter-spacing:.01em}
+  .hero .sum{font-size:18px; color:var(--ink); margin:20px 0 0; max-width:52ch; line-height:1.55}
+
+  /* profile card */
+  .card{border:1px solid var(--line-2); background:var(--panel)}
+  .profile .prow{display:flex; justify-content:space-between; gap:14px; padding:13px 18px; border-bottom:1px solid var(--line)}
+  .profile .prow:last-of-type{border-bottom:0}
+  .profile .prow .k{font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--dim); font-weight:700; white-space:nowrap; padding-top:2px}
+  .profile .prow .v{font-size:13.5px; text-align:right; color:var(--ink); font-weight:500}
+  .profile .roles{padding:14px 18px; border-top:1px solid var(--line-2)}
+  .profile .roles .k{font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--dim); font-weight:700; display:block; margin-bottom:9px}
+  .chips{display:flex; flex-wrap:wrap; gap:6px}
+  .chips span{font-size:11.5px; font-weight:600; color:var(--slate); border:1px solid var(--line-2); padding:4px 9px; border-radius:2px}
+
+  /* --------------------------------------------------------------- impact band */
+  .impact{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-2); border:1px solid var(--line-2)}
+  @media(max-width:760px){ .impact{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:440px){ .impact{grid-template-columns:1fr} }
+  .impact .i{background:var(--bone); padding:18px 20px 17px}
+  .impact .i .fig{font-size:29px; font-weight:700; color:var(--slate); letter-spacing:-.02em; line-height:1}
+  .impact .i .lab{font-size:12.5px; color:var(--ink); margin-top:7px; font-weight:500; line-height:1.35}
+  .impact .i .src{font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--dim); font-weight:700; margin-top:9px}
+
+  /* --------------------------------------------------------------- section */
+  section{padding:64px 0; border-top:1px solid var(--line)}
+  .shead{display:flex; align-items:baseline; gap:16px; margin-bottom:30px; flex-wrap:wrap}
+  .shead .n{font-size:11px; letter-spacing:.2em; color:var(--slate); font-weight:700}
+  .shead h2{font-size:clamp(24px,3.4vw,34px); font-weight:700; letter-spacing:-.015em; margin:0; color:var(--ink)}
+  .shead .sub{font-size:12.5px; color:var(--dim); margin-left:auto; font-weight:500}
+
+  /* --------------------------------------------------------------- projects */
+  .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line-2); border:1px solid var(--line-2)}
+  @media(max-width:820px){ .grid{grid-template-columns:1fr} }
+  .proj{background:var(--bone); padding:26px 26px 24px; display:flex; flex-direction:column; transition:opacity .25s}
+  .proj.flag{grid-column:1 / -1; background:var(--panel)}
+  .proj .top{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:10px}
+  .proj .pno{font-size:11px; letter-spacing:.14em; color:var(--slate); font-weight:700}
+  .proj .ptag{font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--dim); font-weight:600}
+  .proj h3{font-size:clamp(19px,2.2vw,24px); font-weight:700; letter-spacing:-.01em; margin:0 0 6px; color:var(--ink)}
+  .proj .ctx{font-size:11.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--dim); font-weight:600; margin:0 0 14px}
+  .proj .desc{font-size:15.5px; color:var(--ink); margin:0 0 18px; line-height:1.5}
+
+  .metrics{display:flex; flex-wrap:wrap; gap:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:16px}
+  .metrics .m{flex:1 1 auto; min-width:96px; padding:11px 14px 10px; border-right:1px solid var(--line)}
+  .metrics .m:last-child{border-right:0}
+  .metrics .m .mf{font-size:19px; font-weight:700; color:var(--slate); letter-spacing:-.01em}
+  .metrics .m .ml{font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--dim); font-weight:600; margin-top:3px}
+  .flag .metrics .m{min-width:120px}
+
+  .rtags{display:flex; flex-wrap:wrap; gap:6px; margin-top:auto}
+  .rtags span{font-size:10.5px; font-weight:600; letter-spacing:.04em; color:var(--dim); border:1px solid var(--line); padding:3px 8px; border-radius:2px}
+
+  /* --------------------------------------------------------------- capabilities */
+  .caps{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-2); border:1px solid var(--line-2)}
+  @media(max-width:820px){ .caps{grid-template-columns:1fr 1fr} }
+  @media(max-width:520px){ .caps{grid-template-columns:1fr} }
+  .caps .cc{background:var(--bone); padding:22px 22px 24px}
+  .caps .cc h4{font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--slate); font-weight:700; margin:0 0 12px}
+  .caps .cc ul{margin:0; padding:0; list-style:none}
+  .caps .cc li{font-size:15px; color:var(--ink); padding:4px 0; border-bottom:1px solid var(--line)}
+  .caps .cc li:last-child{border-bottom:0}
+
+  /* --------------------------------------------------------------- record */
+  .rec .row{display:grid; grid-template-columns:1fr 1.5fr auto; gap:24px; padding:22px 0; border-bottom:1px solid var(--line); align-items:baseline}
+  .rec .row:last-child{border-bottom:0}
+  @media(max-width:760px){ .rec .row{grid-template-columns:1fr; gap:6px} }
+  .rec .org{font-size:19px; font-weight:700; letter-spacing:-.01em; margin:0}
+  .rec .loc{font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--dim); font-weight:600; margin-top:4px}
+  .rec .pos{font-size:15.5px; color:var(--ink); margin:0; line-height:1.5}
+  .rec .when{font-size:12.5px; color:var(--slate); font-weight:600; text-align:right; white-space:nowrap}
+  .rec .figs{font-size:12px; letter-spacing:.02em; color:var(--slate); font-weight:600; margin:9px 0 0; font-variant-numeric:tabular-nums}
+  @media(max-width:760px){ .rec .when{text-align:left} }
+
+  /* --------------------------------------------------------------- service */
+  .svc-rail{display:flex; flex-wrap:wrap; border:1px solid var(--line-2); margin-bottom:24px}
+  .svc-rail .s{flex:1 1 auto; min-width:170px; padding:16px 20px; border-right:1px solid var(--line)}
+  .svc-rail .s:last-child{border-right:0}
+  .svc-rail .cap{font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); font-weight:700; display:block; margin-bottom:5px}
+  .svc-rail .val{font-size:16px; font-weight:700; color:var(--slate); letter-spacing:-.005em}
+  @media(max-width:620px){ .svc-rail .s{min-width:50%} }
+  .svc-cols{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line-2); border:1px solid var(--line-2)}
+  @media(max-width:760px){ .svc-cols{grid-template-columns:1fr} }
+  .svc-col{background:var(--bone); padding:22px 24px 24px}
+  .svc-col h4{font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--slate); font-weight:700; margin:0 0 12px}
+  .svc-col ul{margin:0; padding:0; list-style:none}
+  .svc-col li{display:flex; justify-content:space-between; gap:16px; align-items:baseline; font-size:14.5px; color:var(--ink); padding:8px 0; border-bottom:1px solid var(--line)}
+  .svc-col li:last-child{border-bottom:0}
+  .svc-col li .meta{font-size:11px; letter-spacing:.03em; color:var(--dim); font-weight:600; white-space:nowrap; font-variant-numeric:tabular-nums}
+
+  /* --------------------------------------------------------------- edu/cert */
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:46px}
+  @media(max-width:760px){ .two{grid-template-columns:1fr; gap:34px} }
+  .item{padding:18px 0; border-bottom:1px solid var(--line)}
+  .item:last-child{border-bottom:0}
+  .item .t{font-size:18px; font-weight:700; margin:0; letter-spacing:-.01em}
+  .item .s{font-size:14.5px; color:var(--ink); margin:5px 0 0}
+  .item .d{font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--slate); font-weight:600; margin-top:6px}
+  .item .note{font-size:14px; color:var(--dim); margin:5px 0 0; line-height:1.45}
+
+  /* --------------------------------------------------------------- contact */
+  .contact{background:var(--slate); color:var(--bone); border-top:0; margin-top:0; padding:74px 0 46px}
+  .contact .c-top{display:grid; grid-template-columns:1.5fr 1fr; gap:44px; align-items:end; margin:0 0 42px}
+  @media(max-width:820px){ .contact .c-top{grid-template-columns:1fr; gap:26px; align-items:start} }
+  .contact .eyebrow{font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:rgba(238,232,226,.72); font-weight:700; margin:0 0 16px}
+  .contact h2{font-size:clamp(30px,5vw,54px); font-weight:700; letter-spacing:-.02em; line-height:.96; margin:0 0 16px; color:var(--bone)}
+  .contact .lead{font-size:16.5px; color:rgba(238,232,226,.85); margin:0; max-width:36ch; line-height:1.5}
+  .contact .cta-row{display:flex; flex-wrap:wrap; gap:12px; justify-content:flex-end}
+  @media(max-width:820px){ .contact .cta-row{justify-content:flex-start} }
+  .cta{display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:700; letter-spacing:.02em; padding:13px 20px; border-radius:2px; border:1px solid var(--bone); transition:background .15s,color .15s}
+  .cta.primary{background:var(--bone); color:var(--slate)}
+  .cta.primary:hover{background:transparent; color:var(--bone)}
+  .cta.ghost{color:var(--bone); background:transparent}
+  .cta.ghost:hover{background:var(--bone); color:var(--slate)}
+  .contact .cgrid{display:flex; flex-wrap:wrap; border:1px solid rgba(238,232,226,.28)}
+  .contact .c{flex:1 1 auto; min-width:170px; padding:17px 20px; border-right:1px solid rgba(238,232,226,.18)}
+  .contact .c:last-child{border-right:0}
+  .contact .c .k{font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:rgba(238,232,226,.65); font-weight:700; display:block; margin-bottom:6px}
+  .contact .c .v{font-size:14px; font-weight:500; color:var(--bone)}
+  .contact .c a{display:block}
+  .contact .c a:hover .v{text-decoration:underline; text-underline-offset:3px}
+  @media(max-width:620px){ .contact .c{border-right:0; border-bottom:1px solid rgba(238,232,226,.18)} .contact .c:last-child{border-bottom:0} }
+  .contact .foot{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-top:26px; font-size:11px; letter-spacing:.06em; color:rgba(238,232,226,.7)}
+
+  /* --------------------------------------------------------------- motion */
+  .reveal{opacity:0; transform:translateY(12px); transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1; transform:none}
+  @media(prefers-reduced-motion:reduce){ .reveal{opacity:1; transform:none; transition:none} html{scroll-behavior:auto} }
+
+  /* --------------------------------------------------------------- print */
+  @media print{
+    :root{ --bone:#ffffff }
+    body{ background:#fff; font-size:11pt }
+    .cta-row{ display:none !important }
+    .reveal{ opacity:1 !important; transform:none !important }
+    section{ padding:20px 0; border-top:1px solid #ccc }
+    .hero{ padding:12px 0 }
+    .proj, .rec .row, .item, .svc-col, .caps .cc{ break-inside:avoid }
+    .grid, .caps, .svc-cols, .cgrid, .stats, .svc-rail{ break-inside:avoid }
+    .contact{ background:#fff; color:var(--ink) }
+    .contact h2,.contact .lead,.contact .c .v,.contact .eyebrow,.contact .c .k,.contact .foot{ color:var(--ink) !important }
+    .contact .cgrid,.contact .c{ border-color:#ccc !important }
+    a{ color:var(--ink) }
+    *{ -webkit-print-color-adjust:exact; print-color-adjust:exact }
+  }
+</style>
+</head>
+<body>
+
+  <!-- hero -->
+  <div class="wrap">
+    <section class="hero" style="border-top:0">
+      <div class="hero-grid">
+        <div>
+          <p class="label ey">Intelligence · Operations · Business Analysis</p>
+          <h1>Derrick M.<span class="l2">Sprague</span></h1>
+          <p class="role">Defense Operations &amp; Intelligence Analyst</p>
+          <p class="sum">Operations expert with twelve years of defense experience in engineering, logistics, data, and intelligence operations across four federal environments.</p>
+        </div>
+
+        <aside class="card profile">
+          <div class="prow"><span class="k">Clearance</span><span class="v">Secret · TS/SCI Eligible</span></div>
+          <div class="prow"><span class="k">Experience</span><span class="v">12 yrs · 4 federal environments</span></div>
+          <div class="prow"><span class="k">Graduate</span><span class="v">Georgetown MPS, Applied Intelligence</span></div>
+          <div class="prow"><span class="k">Location</span><span class="v">Williamsburg, VA</span></div>
+          <div class="roles">
+            <span class="k">Target Roles</span>
+            <div class="chips">
+              <span>Intelligence Analyst</span><span>Targeting Officer</span>
+              <span>Operations Analyst</span><span>Business Analyst</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <p class="label" style="margin:44px 0 14px">Selected Impact · every figure traced to source</p>
+      <div class="impact reveal">
+        <div class="i"><div class="fig tnum">$2.7M</div><div class="lab">FY26 budget modeled</div><div class="src">Knowesis</div></div>
+        <div class="i"><div class="fig tnum">32</div><div class="lab">DoD installations</div><div class="src">Knowesis</div></div>
+        <div class="i"><div class="fig tnum">50+</div><div class="lab">formula errors eliminated</div><div class="src">Knowesis</div></div>
+        <div class="i"><div class="fig tnum">$50M</div><div class="lab">critical equipment secured</div><div class="src">U.S. Army</div></div>
+        <div class="i"><div class="fig tnum">+10%</div><div class="lab">allied vehicle mobility</div><div class="src">U.S. Army</div></div>
+        <div class="i"><div class="fig tnum">−15%</div><div class="lab">safety violations</div><div class="src">U.S. Army</div></div>
+        <div class="i"><div class="fig tnum">25</div><div class="lab">operations led</div><div class="src">U.S. Army</div></div>
+        <div class="i"><div class="fig tnum">1,000</div><div class="lab">sailors supported</div><div class="src">PRIDE Industries</div></div>
+        <div class="i"><div class="fig tnum">300+</div><div class="lab">inventory updates · 100% accuracy</div><div class="src">PRIDE Industries</div></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- work -->
+  <div class="wrap">
+    <section id="work">
+      <div class="shead">
+        <span class="n">01</span>
+        <h2>Selected Work</h2>
+        <span class="sub">Every figure traced to source</span>
+      </div>
+
+      <div class="grid" id="projGrid">
+
+        <article class="proj flag" data-roles="ops business">
+          <div class="top"><span class="pno">P-01 · Flagship</span><span class="ptag">Operations · Business Intelligence</span></div>
+          <h3>R2 TCS OY1 Performance Tracker</h3>
+          <p class="ctx">Knowesis, Inc. · Operations Analyst · Fort Eustis, VA · 2026–Present</p>
+          <p class="desc">Browser-based contract-performance system for the R2 TCS Option Year&nbsp;1 contract: editable modules for personnel, facilities, travel, and supply; automated ODC calculations; and briefing-ready exports for the weekly COR-RA and Performance-Center-Manager review. Source and derived values are kept distinct, and forecasts are labeled estimates.</p>
+          <div class="metrics tnum">
+            <div class="m"><div class="mf">$2.7M</div><div class="ml">FY26 budget</div></div>
+            <div class="m"><div class="mf">32</div><div class="ml">DoD installations</div></div>
+            <div class="m"><div class="mf">5</div><div class="ml">reporting products</div></div>
+            <div class="m"><div class="mf">4-day</div><div class="ml">delivery cycle</div></div>
+            <div class="m"><div class="mf">10</div><div class="ml">person team</div></div>
+          </div>
+          <div class="rtags"><span>Financial modeling</span><span>KPI &amp; variance</span><span>Forecasting (est.)</span><span>CSV/JSON/PPTX I/O</span></div>
+        </article>
+
+        <article class="proj" data-roles="business ops">
+          <div class="top"><span class="pno">P-02</span><span class="ptag">Data</span></div>
+          <h3>Contract Financial Data Remediation</h3>
+          <p class="ctx">Knowesis, Inc. · Fort Eustis, VA</p>
+          <p class="desc">Cleaned and restructured financial data across twelve Excel workbooks into validated models, raising reporting accuracy across contract operations.</p>
+          <div class="metrics tnum">
+            <div class="m"><div class="mf">12</div><div class="ml">workbooks</div></div>
+            <div class="m"><div class="mf">50+</div><div class="ml">errors eliminated</div></div>
+          </div>
+          <div class="rtags"><span>Financial modeling</span><span>Excel</span><span>Data QA</span></div>
+        </article>
+
+        <article class="proj" data-roles="intel targeting">
+          <div class="top"><span class="pno">P-03</span><span class="ptag">Field</span></div>
+          <h3>Route Threat Analysis — Syria</h3>
+          <p class="ctx">United States Army · OIR · 2018–2019</p>
+          <p class="desc">Analyzed adversary attack patterns to secure logistics routes across the operational area, protecting personnel and critical equipment and improving allied vehicle mobility.</p>
+          <div class="metrics tnum">
+            <div class="m"><div class="mf">4</div><div class="ml">routes secured</div></div>
+            <div class="m"><div class="mf">500</div><div class="ml">personnel</div></div>
+            <div class="m"><div class="mf">$50M</div><div class="ml">equipment</div></div>
+            <div class="m"><div class="mf">+10%</div><div class="ml">mobility</div></div>
+          </div>
+          <div class="rtags"><span>Threat pattern analysis</span><span>Route planning</span><span>Risk reduction</span></div>
+        </article>
+
+        <article class="proj" data-roles="ops business intel">
+          <div class="top"><span class="pno">P-04</span><span class="ptag">Analytics</span></div>
+          <h3>Safety Regression &amp; Risk Frameworks</h3>
+          <p class="ctx">United States Army · 3 DoD Locations</p>
+          <p class="desc">Built a regression model in R over twelve months of safety data for a 107-person workforce, and ten risk-reporting frameworks for a 200-person engineering unit using SWOT and behavioral pattern analysis.</p>
+          <div class="metrics tnum">
+            <div class="m"><div class="mf">12 mo</div><div class="ml">data (R)</div></div>
+            <div class="m"><div class="mf">−15%</div><div class="ml">violations</div></div>
+            <div class="m"><div class="mf">10</div><div class="ml">frameworks</div></div>
+            <div class="m"><div class="mf">−15%</div><div class="ml">planning gaps</div></div>
+          </div>
+          <div class="rtags"><span>Regression (R)</span><span>SWOT</span><span>Pattern analysis</span></div>
+        </article>
+
+        <article class="proj" data-roles="ops">
+          <div class="top"><span class="pno">P-05</span><span class="ptag">Logistics</span></div>
+          <h3>Medical Logistics &amp; Readiness</h3>
+          <p class="ctx">PRIDE Industries · Williamsburg, VA</p>
+          <p class="desc">Managed medical materiel and readiness data on DMLSS, SharePoint, and Power BI supporting a 1,000-sailor fleet, and authored a twenty-page onboarding guide that shortened transition time for 140 employees.</p>
+          <div class="metrics tnum">
+            <div class="m"><div class="mf">300+</div><div class="ml">updates</div></div>
+            <div class="m"><div class="mf">100%</div><div class="ml">accuracy</div></div>
+            <div class="m"><div class="mf">−25%</div><div class="ml">transition time</div></div>
+            <div class="m"><div class="mf">140</div><div class="ml">employees</div></div>
+          </div>
+          <div class="rtags"><span>DMLSS</span><span>Power BI</span><span>Inventory control</span></div>
+        </article>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- capabilities -->
+  <div class="wrap">
+    <section id="capabilities">
+      <div class="shead"><span class="n">02</span><h2>Capabilities</h2><span class="sub">Sensitive tooling stated at name-level only</span></div>
+      <div class="caps reveal">
+        <div class="cc"><h4>Data &amp; BI</h4><ul><li>Power BI</li><li>Tableau</li><li>Financial Modeling</li><li>Data Analysis</li><li>Research Analysis</li></ul></div>
+        <div class="cc"><h4>Programming</h4><ul><li>R</li><li>Python</li><li>SQL</li></ul></div>
+        <div class="cc"><h4>Analytic Tradecraft</h4><ul><li>OSINT</li><li>ICD 203</li><li>Red Teaming</li><li>SWOT</li></ul></div>
+        <div class="cc"><h4>Systems &amp; Tools</h4><ul><li>DMLSS</li><li>JIRA</li><li>Microsoft Office</li></ul></div>
+        <div class="cc"><h4>Language</h4><ul><li>Russian — ILR Level 1</li></ul></div>
+        <div class="cc"><h4>Focus</h4><ul><li>Contract performance</li><li>Logistics</li><li>Fiscal accountability</li></ul></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- record -->
+  <div class="wrap">
+    <section id="record" class="rec">
+      <div class="shead"><span class="n">03</span><h2>Career Record</h2></div>
+      <div class="row reveal">
+        <div><p class="org">Knowesis, Inc.</p><p class="loc">Fort Eustis, VA</p></div>
+        <div><p class="pos">Operations Analyst — contract-performance modeling, reporting, and stakeholder delivery across 32 DoD installations.</p>
+        <p class="figs">$2.7M budget · 32 installations · 5 reporting products · 4-day cycle</p></div>
+        <div class="when tnum">06/2026 — Present</div>
+      </div>
+      <div class="row reveal">
+        <div><p class="org">PRIDE Industries</p><p class="loc">Williamsburg, VA</p></div>
+        <div><p class="pos">Medical Material Specialist — medical logistics, inventory control, and readiness data on DMLSS and Power BI.</p>
+        <p class="figs">1,000 sailors · 300+ updates · 100% accuracy · −25% transition time</p></div>
+        <div class="when tnum">02/2026 — 06/2026</div>
+      </div>
+      <div class="row reveal">
+        <div><p class="org">United States Army</p><p class="loc">3 DoD Locations + Syria</p></div>
+        <div><p class="pos">Operations Manager — threat and safety analysis, route planning, risk frameworks, and explosive-hazard reduction across 25 operations.</p>
+        <p class="figs">25 operations · 500 personnel · $50M equipment · −15% violations</p></div>
+        <div class="when tnum">11/2012 — 07/2025</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- service -->
+  <div class="wrap">
+    <section id="service">
+      <div class="shead"><span class="n">04</span><h2>Military Service</h2><span class="sub">U.S. Army · Honorable Discharge</span></div>
+
+      <div class="svc-rail reveal">
+        <div class="s"><span class="cap">Rank</span><span class="val">Staff Sergeant (E-6)</span></div>
+        <div class="s"><span class="cap">Specialty</span><span class="val">12B Combat Engineer</span></div>
+        <div class="s"><span class="cap">Service</span><span class="val tnum">2012 — 2025</span></div>
+        <div class="s"><span class="cap">Deployment</span><span class="val">Syria · OIR 2018–19</span></div>
+      </div>
+
+      <div class="svc-cols reveal">
+        <div class="svc-col">
+          <h4>Decorations &amp; Awards</h4>
+          <ul>
+            <li>Army Commendation Medal</li>
+            <li>Army Achievement Medal <span class="meta">2nd Award</span></li>
+            <li>Army Good Conduct Medal <span class="meta">4th Award</span></li>
+            <li>National Defense Service Medal</li>
+            <li>Global War on Terrorism Service Medal</li>
+            <li>Inherent Resolve Campaign Medal <span class="meta">w/ Campaign Star</span></li>
+            <li>NCO Professional Development Ribbon <span class="meta">3rd Award</span></li>
+            <li>Army Service Ribbon</li>
+            <li>Overseas Service Ribbon</li>
+            <li>Air Assault Badge</li>
+          </ul>
+        </div>
+        <div class="svc-col">
+          <h4>Professional Military Education</h4>
+          <ul>
+            <li>Combat Engineer Course <span class="meta">14 wk · 2013</span></li>
+            <li>Route Recon / CLR-OPR (GWOT) <span class="meta">2 wk · 2013</span></li>
+            <li>Combat Lifesaver <span class="meta">1 wk · 2014</span></li>
+            <li>Basic Leader Course <span class="meta">3 wk · 2015</span></li>
+            <li>Transportation of Hazardous Materials <span class="meta">2 wk · 2017</span></li>
+            <li>Advanced Leader Course <span class="meta">5 wk · 2019</span></li>
+            <li>Civil Affairs Assessment / Selection <span class="meta">1 wk · 2020</span></li>
+            <li>Senior Leader Course <span class="meta">2 wk · 2024</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- education -->
+  <div class="wrap">
+    <section id="education">
+      <div class="shead"><span class="n">05</span><h2>Education &amp; Certification</h2></div>
+      <div class="two">
+        <div>
+          <div class="item reveal">
+            <p class="t">M.P.S., Applied Intelligence</p>
+            <p class="s">Georgetown University — Washington, D.C.</p>
+            <p class="d">Expected 2027</p>
+          </div>
+          <div class="item reveal">
+            <p class="t">B.S., Criminal Justice (Homeland Security)</p>
+            <p class="s">Purdue Global University — West Lafayette, IN</p>
+            <p class="d">2023</p>
+          </div>
+        </div>
+        <div>
+          <div class="item reveal">
+            <p class="t">Google Cybersecurity Professional Certificate</p>
+            <p class="note">Applied network security within 3 DoD environments.</p>
+          </div>
+          <div class="item reveal">
+            <p class="t">Google Business Intelligence</p>
+            <p class="note">Managed medical supply databases supporting 20% of the Norfolk fleet.</p>
+          </div>
+          <div class="item reveal">
+            <p class="t">Lean Six Sigma Green Belt (LGBC)</p>
+            <p class="note">Eliminated 5 data-tracking trackers for a 200-person DoD organization.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- contact -->
+  <div class="wrap">
+    <section id="contact" class="contact">
+      <div class="c-top">
+        <div>
+          <p class="eyebrow">06 · Contact</p>
+          <h2>Let's connect.</h2>
+          <p class="lead">Open to Intelligence, Targeting, Operations, and Business Analyst roles.</p>
+        </div>
+        <div class="cta-row">
+          <a class="cta primary" href="mailto:Derrick.m.sprague@gmail.com">Email Derrick →</a>
+          <a class="cta ghost" href="https://linkedin.com/in/derrickmsprague/" target="_blank" rel="noopener">LinkedIn →</a>
+        </div>
+      </div>
+      <div class="cgrid">
+        <div class="c"><a href="mailto:Derrick.m.sprague@gmail.com"><span class="k">Email</span><span class="v">Derrick.m.sprague@gmail.com</span></a></div>
+        <div class="c"><a href="tel:+17579314378"><span class="k">Phone</span><span class="v tnum">(757) 931-4378</span></a></div>
+        <div class="c"><a href="https://linkedin.com/in/derrickmsprague/" target="_blank" rel="noopener"><span class="k">LinkedIn</span><span class="v">/in/derrickmsprague</span></a></div>
+        <div class="c"><span class="k">Location</span><span class="v">Williamsburg, VA</span></div>
+      </div>
+      <div class="foot">
+        <span>Derrick M. Sprague — Defense Operations &amp; Intelligence Analyst</span>
+        <span id="year"></span>
+      </div>
+    </section>
+  </div>
+
+<script>
+  document.getElementById("year").textContent = "© " + new Date().getFullYear();
+
+  /* scroll reveal */
+  (function(){
+    var els = document.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window)){ els.forEach(function(e){e.classList.add("in");}); return; }
+    var io = new IntersectionObserver(function(en){
+      en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold:.12, rootMargin:"0px 0px -8% 0px" });
+    els.forEach(function(e){ io.observe(e); });
+  })();
+</script>
+</body>
+</html>
