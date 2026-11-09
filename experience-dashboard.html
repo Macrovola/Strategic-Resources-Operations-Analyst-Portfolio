@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Derrick Sprague — Experience Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<style>
+:root {
+  --font-anthropic-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-anthropic-serif: Georgia, "Times New Roman", serif;
+  --color-fg: #1f2933; --color-fg-muted: #616e7c; --color-bg: #f5f7fa; --color-panel: #ffffff;
+  --color-border-line: #e4e7eb; --color-bad: #c62828;
+  --cds-font-size-caption: 12px; --cds-font-size-body: 14px; --cds-font-size-heading: 16px; --cds-font-size-title: 30px;
+  --cds-font-weight-medium: 600;
+  --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 16px; --cds-gap-lg: 24px;
+  --cds-pad-xs: 4px; --cds-pad-sm: 8px; --cds-pad-lg: 20px; --cds-radius: 8px;
+  --cds-chart-grid: #e4e7eb; --cds-chart-axis: #9aa5b1;
+  --cds-surface-popover: #ffffff; --cds-border: #d2d6dc; --cds-shadow-popover: 0 4px 12px rgba(0,0,0,.12);
+  --cds-text-secondary: #616e7c; --cds-dur-slow: .3s;
+}
+body { margin: 0; background: var(--color-bg); }
+#dash-root { max-width: 1100px; margin: 0 auto; padding: 32px 20px; }
+.ds-back { font-family: var(--font-anthropic-sans); font-size: 13px; color: #1f3864; }
+</style>
+</head>
+<body>
+<div id="dash-root">
+<p><a class="ds-back" href="./">← Back to portfolio</a></p>
+<script>
+window.DASH_DATA = {"kpis": [{"id": "years", "label": "Years of Army service", "value": "12", "context": "U.S. Army 11/2012 – 07/2025"}, {"id": "installations", "label": "Army installations supported", "value": "37", "context": "Knowesis operations analyst"}, {"id": "budget", "label": "Program budget forecast ($M)", "value": "2.7", "context": "Knowesis operations analyst"}, {"id": "orders", "label": "Supply orders fulfilled", "value": "1487", "context": "Knowesis — first 4 months"}, {"id": "route_km", "label": "Kilometers of route cleared", "value": "2500", "context": "U.S. Army — 80+ missions"}, {"id": "forecast_before", "label": "Forecast accuracy before (%)", "value": "84", "context": "Knowesis rolling 12-month model"}, {"id": "forecast_after", "label": "Forecast accuracy after (%)", "value": "93", "context": "Knowesis rolling 12-month model"}], "impact": [{"result": "Late taskings cut", "percent": "70", "org": "U.S. Army", "area": "Process improvement"}, {"result": "Recurring bottlenecks resolved", "percent": "60", "org": "U.S. Army", "area": "Process improvement"}, {"result": "Supply-order approval cycle time cut", "percent": "25", "org": "Knowesis", "area": "Process improvement"}, {"result": "New-hire transition time cut", "percent": "25", "org": "PRIDE Industries", "area": "Process improvement"}, {"result": "Recorded safety violations reduced", "percent": "15", "org": "U.S. Army", "area": "Data analysis"}, {"result": "Unit readiness metrics improved", "percent": "15", "org": "U.S. Army", "area": "Planning"}], "quality": [{"measure": "Inventory transaction accuracy", "percent": "100", "org": "PRIDE Industries"}, {"measure": "Leadership packages delivered on time", "percent": "100", "org": "Knowesis"}, {"measure": "NCO promotion-board pass rate", "percent": "100", "org": "U.S. Army"}, {"measure": "Demolition certification pass rate", "percent": "98", "org": "U.S. Army"}, {"measure": "Supply orders delivered on time", "percent": "97", "org": "Knowesis"}, {"measure": "Travel claims cleared on first submission", "percent": "87", "org": "Knowesis"}, {"measure": "Partner-force counter-IED qualification", "percent": "86", "org": "U.S. Army"}], "operations": [{"activity": "Convoy movements commanded", "count": "200", "org": "U.S. Army"}, {"activity": "Route-clearance missions", "count": "80", "org": "U.S. Army"}, {"activity": "Route-reconnaissance operations (Syria)", "count": "60", "org": "U.S. Army"}, {"activity": "Live-fire ranges run as NCOIC", "count": "40", "org": "U.S. Army"}, {"activity": "Company training events executed", "count": "30", "org": "U.S. Army"}, {"activity": "Demolition ranges executed", "count": "30", "org": "U.S. Army"}], "timeline": [{"role": "Reconnaissance NCO / Staff Sergeant (E-6)", "org": "U.S. Army", "start": "2012-11", "end": "2025-07"}, {"role": "Combat deployment — Operation Inherent Resolve", "org": "Syria", "start": "2018-07", "end": "2019-03"}, {"role": "Medical Material Specialist", "org": "PRIDE Industries", "start": "2026-02", "end": "2026-06"}, {"role": "Operations Analyst", "org": "Knowesis", "start": "2026-06", "end": "2026-11"}]};
+window.dash = (function () {
+  const draws = [];
+  return {
+    colors: ['#1f3864', '#2e7d6b', '#c27c0e', '#7b4fa0', '#3a7bd5', '#b23a48'],
+    data(id) { return { status: 'ok', data: window.DASH_DATA[id] || [] }; },
+    draw(name, fn) { draws.push([name, fn]); },
+    run() { draws.forEach(([n, fn]) => document.querySelectorAll('[data-draw="' + n + '"]').forEach((el) => fn(el))); }
+  };
+})();
+</script>
+<style>
+.ds { font-family: var(--font-anthropic-sans); color: var(--color-fg); display: grid; gap: var(--cds-gap-lg); }
+.ds-title { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; }
+.ds-take { color: var(--color-fg-muted); font-size: var(--cds-font-size-body); margin: var(--cds-gap-xs) 0 0; }
+.ds-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr)); gap: var(--cds-gap-md); }
+.ds-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); }
+.ds-lab { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.ds-num { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; margin: var(--cds-gap-xs) 0; }
+.ds-ctx { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.ds-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
+.ds-wide { grid-column: 1 / -1; }
+.ds-h { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.ds-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: var(--cds-gap-xs) 0 var(--cds-gap-md); }
+.ds-chart { position: relative; min-height: 14rem; }
+.ds-chart svg text { font-family: var(--font-anthropic-sans); font-size: var(--cds-font-size-caption); fill: var(--color-fg); }
+.ds-chart svg text.ds-muted { fill: var(--color-fg-muted); }
+.ds-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); max-width: 16rem; z-index: 2; }
+.ds-tip-sub { color: var(--cds-text-secondary); }
+.ds-fail { display: flex; align-items: center; justify-content: center; gap: var(--cds-gap-xs); min-height: 14rem; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.ds-fail-dot { width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+.ds-foot summary { cursor: pointer; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.ds-foot p { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+[data-dash-source-state=empty] { color: transparent; }
+</style>
+
+<div class="ds">
+  <header id="top">
+    <h1 class="ds-title">Derrick Sprague — experience at a glance</h1>
+    <p class="ds-take">Measured results from Army service through current Army program support, drawn from the master resume.</p>
+  </header>
+
+  <section class="ds-tiles" id="headline">
+    <div class="ds-card">
+      <div class="ds-lab">Years of Army service</div>
+      <div class="ds-num"><span data-draw="kpi" data-source="kpis" data-field="value" data-where="id=years">—</span></div>
+      <div class="ds-ctx">Enlisted through Staff Sergeant</div>
+    </div>
+    <div class="ds-card">
+      <div class="ds-lab">Army installations supported</div>
+      <div class="ds-num"><span data-draw="kpi" data-source="kpis" data-field="value" data-where="id=installations">—</span></div>
+      <div class="ds-ctx">Current operations analyst role</div>
+    </div>
+    <div class="ds-card">
+      <div class="ds-lab">Program budget forecast</div>
+      <div class="ds-num">$<span data-draw="kpi" data-source="kpis" data-field="value" data-where="id=budget">—</span>M</div>
+      <div class="ds-ctx">Rolling forecast model in Excel</div>
+    </div>
+    <div class="ds-card">
+      <div class="ds-lab">Supply orders fulfilled</div>
+      <div class="ds-num"><span data-draw="kpi" data-source="kpis" data-field="value" data-where="id=orders">—</span></div>
+      <div class="ds-ctx">First four months at Knowesis</div>
+    </div>
+    <div class="ds-card">
+      <div class="ds-lab">Route cleared</div>
+      <div class="ds-num"><span data-draw="kpi" data-source="kpis" data-field="value" data-where="id=route_km">—</span> km</div>
+      <div class="ds-ctx">Explosive-hazard defeat missions</div>
+    </div>
+    <div class="ds-card">
+      <div class="ds-lab">Forecast accuracy</div>
+      <div class="ds-num"><span data-draw="kpi" data-source="kpis" data-field="value" data-where="id=forecast_before">—</span>% → <span data-draw="kpi" data-source="kpis" data-field="value" data-where="id=forecast_after">—</span>%</div>
+      <div class="ds-ctx">Before and after the forecast rebuild</div>
+    </div>
+  </section>
+
+  <section class="ds-grid">
+    <div class="ds-card" id="improvements">
+      <h2 class="ds-h">Measured improvements</h2>
+      <p class="ds-note">Percent change credited to each initiative</p>
+      <div class="ds-chart" data-draw="impact" data-source="impact"></div>
+    </div>
+    <div class="ds-card" id="quality">
+      <h2 class="ds-h">Accuracy and on-time rates</h2>
+      <p class="ds-note">Share of work completed to standard</p>
+      <div class="ds-chart" data-draw="quality" data-source="quality"></div>
+    </div>
+    <div class="ds-card" id="operations">
+      <h2 class="ds-h">Army operations led</h2>
+      <p class="ds-note">Operations, missions, and events by count</p>
+      <div class="ds-chart" data-draw="operations" data-source="operations"></div>
+    </div>
+    <div class="ds-card ds-wide" id="timeline">
+      <h2 class="ds-h">Career timeline</h2>
+      <p class="ds-note">Roles and combat deployment by date</p>
+      <div class="ds-chart" data-draw="timeline" data-source="timeline"></div>
+    </div>
+  </section>
+
+  <details class="ds-foot">
+    <summary>About these figures</summary>
+    <p>Every figure comes from Derrick Sprague's master resume and is shown as stated there. Percent changes are the improvements credited to each initiative on the resume, not independently audited results.</p>
+  </details>
+</div>
+
+<script>
+(function () {
+  const fmt = d3.format(',');
+
+  function fail(el) {
+    const box = document.createElement('div');
+    box.className = 'ds-fail';
+    const dot = document.createElement('span');
+    dot.className = 'ds-fail-dot';
+    const txt = document.createElement('span');
+    txt.textContent = 'Failed to load';
+    box.append(dot, txt);
+    el.replaceChildren(box);
+  }
+
+  function tipFor(el) {
+    const tip = document.createElement('div');
+    tip.className = 'ds-tip';
+    tip.hidden = true;
+    el.appendChild(tip);
+    return {
+      show(ev, title, sub) {
+        const head = document.createElement('div');
+        head.className = 'ds-tip-sub';
+        head.textContent = sub;
+        const body = document.createElement('div');
+        body.textContent = title;
+        tip.replaceChildren(head, body);
+        tip.hidden = false;
+        const r = el.getBoundingClientRect();
+        let x = ev.clientX - r.left + 12, y = ev.clientY - r.top + 12;
+        const tw = tip.offsetWidth, th = tip.offsetHeight;
+        if (x + tw > r.width) x = Math.max(0, ev.clientX - r.left - tw - 12);
+        if (y + th > r.height) y = Math.max(0, ev.clientY - r.top - th - 12);
+        tip.style.left = x + 'px';
+        tip.style.top = y + 'px';
+      },
+      hide() { tip.hidden = true; }
+    };
+  }
+
+  dash.draw('kpi', (el) => {
+    const d = dash.data('kpis');
+    if (d.status !== 'ok') { el.textContent = '—'; return; }
+    const id = decodeURIComponent((el.getAttribute('data-where') || '').split('=')[1] || '');
+    const row = d.data.find((r) => r.id === id);
+    el.textContent = row ? fmt(Number(row.value)) : '—';
+  });
+
+  function hbar(el, id, labelKey, valueKey, opts) {
+    const d = dash.data(id);
+    if (d.status === 'error') { el.classList.remove('dash-skeleton'); fail(el); return; }
+    if (d.status !== 'ok') { el.replaceChildren(); return; }
+    el.classList.remove('dash-skeleton');
+    const rows = d.data.map((r) => ({ label: r[labelKey], v: Number(r[valueKey]), org: r.org }));
+    const W = Math.max(280, el.clientWidth || 600);
+    const rowH = 40, valW = 52;
+    const H = rows.length * rowH + 4;
+    const max = opts.max != null ? opts.max : d3.max(rows, (r) => r.v);
+    const x = d3.scaleLinear([0, max], [0, W - valW]);
+    const svg = d3.create('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const g = svg.selectAll('g').data(rows).join('g').attr('transform', (r, i) => `translate(0,${i * rowH})`);
+    g.append('text').attr('x', 0).attr('y', 13).text((r) => r.label);
+    if (opts.track) {
+      g.append('rect').attr('x', 0).attr('y', 20).attr('height', 12).attr('rx', 3)
+        .attr('width', x(max)).attr('fill', 'var(--cds-chart-grid)');
+    }
+    g.append('rect').attr('class', 'ds-bar').attr('x', 0).attr('y', 20).attr('height', 12).attr('rx', 3)
+      .attr('width', (r) => Math.max(2, x(r.v))).attr('fill', dash.colors[opts.color || 0]);
+    g.append('text').attr('class', 'ds-muted').attr('x', (r) => (opts.track ? x(max) : x(r.v)) + 6).attr('y', 30)
+      .text((r) => fmt(r.v) + (opts.suffix || ''));
+    g.append('rect').attr('x', 0).attr('y', 0).attr('width', W).attr('height', rowH).attr('fill', 'transparent');
+    el.replaceChildren(svg.node());
+    const tip = tipFor(el);
+    g.on('mousemove', (ev, r) => tip.show(ev, `${r.label}: ${fmt(r.v)}${opts.suffix || ''}`, r.org))
+     .on('mouseleave', () => tip.hide());
+  }
+
+  dash.draw('impact', (el) => hbar(el, 'impact', 'result', 'percent', { suffix: '%', color: 0 }));
+  dash.draw('quality', (el) => hbar(el, 'quality', 'measure', 'percent', { suffix: '%', max: 100, track: true, color: 1 }));
+  dash.draw('operations', (el) => hbar(el, 'operations', 'activity', 'count', { suffix: '', color: 2 }));
+
+  dash.draw('timeline', (el) => {
+    const d = dash.data('timeline');
+    if (d.status === 'error') { el.classList.remove('dash-skeleton'); fail(el); return; }
+    if (d.status !== 'ok') { el.replaceChildren(); return; }
+    el.classList.remove('dash-skeleton');
+    const parse = d3.utcParse('%Y-%m');
+    const mfmt = d3.utcFormat('%b %Y');
+    const rows = d.data.map((r) => ({ role: r.role, org: r.org, s: parse(r.start), e: parse(r.end) }));
+    const W = Math.max(280, el.clientWidth || 800);
+    const rowH = 44, axisH = 24;
+    const H = rows.length * rowH + axisH;
+    const x = d3.scaleUtc([d3.min(rows, (r) => r.s), d3.max(rows, (r) => r.e)], [20, W - 20]).nice();
+    const svg = d3.create('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const ticks = Math.max(2, Math.floor(W / 90));
+    svg.append('g').selectAll('line').data(x.ticks(ticks)).join('line')
+      .attr('x1', (t) => x(t)).attr('x2', (t) => x(t)).attr('y1', 0).attr('y2', H - axisH)
+      .attr('stroke', 'var(--cds-chart-grid)');
+    const g = svg.selectAll('g.ds-row').data(rows).join('g').attr('class', 'ds-row')
+      .attr('transform', (r, i) => `translate(0,${i * rowH})`);
+    g.append('text').attr('x', 0).attr('y', 14)
+      .text((r) => `${r.role} · ${r.org}`);
+    g.append('rect').attr('x', (r) => x(r.s)).attr('y', 22).attr('height', 14).attr('rx', 3)
+      .attr('width', (r) => Math.max(4, x(r.e) - x(r.s))).attr('fill', (r, i) => dash.colors[i % dash.colors.length]);
+    g.append('rect').attr('x', 0).attr('y', 0).attr('width', W).attr('height', rowH).attr('fill', 'transparent');
+    const ax = svg.append('g').attr('transform', `translate(0,${H - axisH})`)
+      .call(d3.axisBottom(x).ticks(ticks).tickSizeOuter(0))
+      .attr('font-size', null).attr('font-family', null);
+    ax.select('.domain').attr('stroke', 'var(--cds-chart-axis)');
+    ax.selectAll('.tick line').attr('stroke', 'var(--cds-chart-axis)');
+    ax.selectAll('.tick text').attr('class', 'ds-muted');
+    el.replaceChildren(svg.node());
+    const tip = tipFor(el);
+    g.on('mousemove', (ev, r) => tip.show(ev, r.role, `${r.org} · ${mfmt(r.s)} – ${mfmt(r.e)}`))
+     .on('mouseleave', () => tip.hide());
+  });
+})();
+</script>
+<script>
+dash.run();
+let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => dash.run(), 150); });
+</script>
+</div>
+</body>
+</html>
